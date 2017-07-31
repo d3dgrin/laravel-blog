@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Models\User;
+use Carbon\Carbon;
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -11,10 +14,23 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('users')->insert([
-            'login' => 'admin',
-            'email' => 'grin9226@gmail.com',
-            'password' => bcrypt('motherfucker'),
-        ]);
+        $users = [
+            [
+                'login' => 'admin',
+                'password' => bcrypt('admin'),
+                'username' => 'Jack Shepard',
+                'email' => 'grin9226@gmail.com',
+            ],
+            [
+                'login' => 'moder',
+                'password' => bcrypt('moder'),
+                'username' => 'Kate Austin',
+                'email' => 'kidgiftshop@gmail.com',
+            ]
+        ];
+
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }

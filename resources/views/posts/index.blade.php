@@ -8,8 +8,7 @@
 <div class="col-md-8">
 
     <h1 class="page-header">
-        Some posts
-        <small>bitcheeeeees</small>
+        All posts
     </h1>
 
     @foreach($posts as $post)
@@ -18,16 +17,10 @@
 
     @endforeach
 
-    <!-- Pager -->
-    <ul class="pager">
-        <li class="previous">
-            <a href="#">&larr; Older</a>
-        </li>
-        <li class="next">
-            <a href="#">Newer &rarr;</a>
-        </li>
-    </ul>
+    {{ $posts->links() }}
 
 </div>
+
+<script id="dsq-count-scr" src="//laravel-blog-test.disqus.com/count.js" async></script>
 
 @endsection

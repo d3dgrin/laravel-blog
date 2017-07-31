@@ -21,13 +21,18 @@ class SessionController extends Controller
 
     public function store()
     {
+        $this->validate(request(), [
+            'login' => 'required',
+            'password' => 'required'
+        ]);
+
         if( ! auth()->attempt(request(['login', 'password'])) ) {
             return back()->withErrors([
                 'message' => 'Please check your credentials and try again.'
             ]);
         }
 
-        return redirect()->route('admin.panel');
+        return redirect()->intended('admin.panel');
     }
 
     public function destroy() 

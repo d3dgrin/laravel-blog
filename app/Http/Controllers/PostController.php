@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(10);
 
         return view('posts.index', compact('posts'));
     }
@@ -47,8 +48,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($slug)
     {
+        $post = Post::where('slug', $slug)->first();
+
         return view('posts.show', compact('post'));
     }
 
@@ -84,6 +87,24 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search()
+    {
+        $search = request('q');
+
+        $posts = Post::where('title', 'like', '%' . $search . '%')->latest()->get();
+
+        return view('posts.search', compact('search', 'posts'));
+    }
+
+    public function author($author)
+    {
+        $user = User::where('username', $author)->first();
+
+        $posts = $user->posts()->latest()->get();
+
+        return view('posts.author', compact('posts', 'user'));
     }
 
 }

@@ -6,7 +6,7 @@
 
 <div class="col-md-12">
     <div class="panel panel-default">
-        <div class="panel-heading text-center">Create new post</div>
+        <div class="panel-heading text-center"><h4>Create new post</h4></div>
         <div class="panel-body">
             <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.store.post') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}

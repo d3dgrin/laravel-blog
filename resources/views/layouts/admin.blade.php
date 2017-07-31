@@ -31,7 +31,7 @@
 
 <body>
 
-    @include('layouts._admin_navigation')
+    @include('partials.admin_navigation')
 
     <!-- Page Content -->
     <div class="container">
@@ -43,17 +43,13 @@
         </div>
         <!-- /.row -->
 
+        @include('partials.footer')
+
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="/js/jquery.js"></script>
+    @include('partials.scripts')
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
-
-    <!-- Custom JavaScript -->
-    <script src="/js/common.js"></script>
 </body>
 
 </html>

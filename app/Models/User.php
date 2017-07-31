@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+
+use App\Models\Post;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, EntrustUserTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'email', 'password',
+        'login', 'email', 'password', 'username',
     ];
 
     /**
@@ -30,5 +33,22 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function getRole()
+    {
+        foreach ($this->roles as $role) {
+            return $role;
+        }
+    }
+
+    public function canPostsAction(Post $post)
+    {
+        if($this->hasRole('admin'))
+        {
+            return true;
+        }
+        
+        return ($this->id == $post->user_id);
     }
 }

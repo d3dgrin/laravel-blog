@@ -19,12 +19,13 @@
                 <li>
                     <a href="{{ route('admin.posts') }}">Posts</a>
                 </li>
+
+                @if(Auth::user()->hasRole('admin'))
                 <li>
-                    <a href="{{ route('admin.create.post') }}">Add post</a>
+                    <a href="{{ route('admin.users') }}">Users</a>
                 </li>
-                <li>
-                    <a href="#">Something else</a>
-                </li>
+                @endif
+
             </ul>
             @endif
 
@@ -34,7 +35,7 @@
                 <!-- Authentication Links -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->login }} <span class="caret"></span>
+                            {{ Auth::user()->username }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">

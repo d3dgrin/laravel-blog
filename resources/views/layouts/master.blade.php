@@ -28,7 +28,7 @@
 
 <body>
 
-    @include('layouts._navigation')
+    @include('partials.navigation')
 
     <!-- Page Content -->
     <div class="container">
@@ -37,25 +37,17 @@
 
             @yield('content')
 
-            @section('sidebar')
-                @include('layouts._sidebar')
-            @show
+            @include('partials.sidebar')
 
         </div>
         <!-- /.row -->
 
-        @section('footer')
-            @include('layouts._footer')
-        @show
-
+        @include('partials.footer')
+        
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    @include('partials.scripts')
 
 </body>
 
